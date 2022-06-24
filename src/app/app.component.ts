@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   // Set our map properties
-  mapCenter = [-118.80543,34.02700];
+  mapCenter = [5.7281, 51.8320];
   basemapType = 'hybrid';
-  mapZoomLevel = 12;
+  mapZoomLevel = 14;
 
   // See app.component.html
   mapLoadedEvent(status: boolean) {

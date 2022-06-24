@@ -32,7 +32,7 @@ export class EsriMapComponent implements OnInit, OnDestroy {
    * _loaded provides map loaded status
    */
   private _zoom = 10;
-  private _center: Array<number> = [0.1278, 51.5074];
+  private _center: Array<number> = [51.8320,5.7281];
   private _basemap = "topographic";
   private _loaded = false;
   private _view: esri.MapView = null;
@@ -217,22 +217,22 @@ export class EsriMapComponent implements OnInit, OnDestroy {
       // time slider widget initialization
       const timeSlider = new TimeSlider({
         container: "timeSlider",
-        mode: "time-window",
+        // mode: "time-window",
         view: this._view,
         timeVisible: true,
         loop: true
       });
-      this._view.ui.add(timeSlider, "bottom-left");
+      // this._view.ui.add(timeSlider, "bottom-right");
 
       this._view.whenLayerView(windLayer).then((lv) => {
-        timeSlider.fullTimeExtent = windLayer.timeInfo.fullTimeExtent;
+        timeSlider.fullTimeExtent = windLayer.timeInfo.fullTimeExtent.expandTo("hours");
         timeSlider.stops = {
           interval: windLayer.timeInfo.interval
         };
       });
 
 
-      await this._view.when();
+      // await this._view.when();
       return this._view;
     } catch (error) {
       console.log("EsriLoader: ", error);
